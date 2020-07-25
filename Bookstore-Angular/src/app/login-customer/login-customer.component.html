@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+      
+<header>
+        <img src="../assets/BookstoreLogo.png" alt="logo">
+      <ul>
+        <li><a>Users</a></li>
+        <li><a>Categories</a></li>
+        <li><a>Books</a></li>
+        <li><a>Customers</a></li>
+        <li><a>Reviews</a></li>
+        <li><a>Orders</a></li>
+      </ul>
+      </header>
+
+      <main>
+
+    <div  class="text-primary heading">
+      </div> 
+          
+      <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto  form p-3">
+          <h2 class="text-center" >Login As Customer</h2>
+      
+        <form  [formGroup]="customerLoginForm" (ngSubmit)="onCustomerLoginFormSubmit()">
+          <table class="col-md-mx-auto table table-primary table -striped table-hower">
+            <tr>
+              <td><label>EMAIL:</label> </td>
+              <td>
+                <input type="text" formControlName="email" placeholder="Enter Customer Email Id" required class="form-control border border-success">
+                <div *ngIf="customerLoginForm.get('email').errors  && isSubmitted">
+                  <div *ngIf="customerLoginForm.get('email').hasError('required')">
+                    <span>EmailId is required</span>
+                  </div>
+                  <div *ngIf="customerLoginForm.get('email').hasError('minLength')">
+                    <span>EmailId should contain atleast 4 characters.</span>
+                  </div>
+                  <div *ngIf="customerLoginForm.get('email').hasError('pattern')">
+                    <span>Enter valid Email.</span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <br>
+            <tr>
+              <td><label>Password:</label></td>
+              <td>
+                <input type="password" formControlName="password" placeholder="Enter password" required class="form-control border border-success">
+                <div *ngIf="customerLoginForm.get('password').errors  && isSubmitted">
+                  <div *ngIf="customerLoginForm.get('password').hasError('required')">
+                    <span>Password is required</span>
+                  </div>
+                  <div *ngIf="customerLoginForm.get('password').hasError('minlength')">
+                    <span>The password requied atleast 4 characters.</span>
+                  </div>
+                  <div *ngIf="customerLoginForm.get('password').hasError('maxlength')">
+                    <span>The password requied only 16 characters.</span>
+                  </div>
+                  <div *ngIf="customerLoginForm.get('password').hasError('pattern')">
+                    <span>Enter valid password.</span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <br>
+            <tr>
+              <td colspan="2" align="center">
+                <button type="submit" value="Submit" class="btn btn-danger btn-lg">LOGIN</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a routerLink='/loginadmin'>Admin Login</a>
+                
+              </td>
+            </tr>
+          </table>
+      
+           
+         
+      </form>
+      <div class="alert alert-danger" *ngIf="checkError">
+        <strong>ERROR!</strong> {{errorMessage}}
+      </div>
+      <div class="alert alert-success" *ngIf="checkInfo">
+        <strong>SUCCESS!</strong> {{infoMessage}}
+      </div>
+         
+      </div>
+
+    </main>
+      
+      <footer>
+            <p>Copyright (c) 2017 by Evergreen Books Co., Ltd</p>
+          </footer>
+       
+          
+</body>
+</html>
+
+
+
